@@ -10,7 +10,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace Engine_Trim_Color
+namespace EngineTrimColor
 {
     internal class Configs
     {

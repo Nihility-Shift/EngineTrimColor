@@ -2,7 +2,7 @@
 using VoidManager.CustomGUI;
 using VoidManager.Utilities;
 
-namespace Engine_Trim_Color
+namespace EngineTrimColor
 {
     internal class GUI : ModSettingsMenu
     {
