@@ -4,7 +4,7 @@
 
 # Engine Trim Color
 
-Version 1.0.0  
+Version 1.0.1  
 For Game Version 1.1.0  
 Developed by 18107  
 Requires:  BepInEx-BepInExPack-5.4.2100, NihilityShift-VoidManager-1.2.8
