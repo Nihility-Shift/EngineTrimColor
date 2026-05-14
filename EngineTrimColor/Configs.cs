@@ -32,14 +32,22 @@ namespace EngineTrimColor
             //Update trim panel colors
             try
             {
-                Diode[] diodes = ClientGame.Current.PlayerShip.GameObject.GetComponentInChildren<ShipEngine>().GameObject.GetComponentsInChildren<AbstractInteractable>().Where(a => a.name == "TrimAdvisoryPanel").First().gameObject.GetComponentsInChildren<Diode>();
+                AbstractInteractable[] AIs = ClientGame.Current.PlayerShip.GameObject.GetComponentInChildren<ShipEngine>().GameObject.GetComponentsInChildren<AbstractInteractable>();
+                List<Diode> diodes = new();
+                foreach (AbstractInteractable AI in AIs) { diodes.AddRange(AI.gameObject.GetComponentsInChildren<Diode>()); }
+
                 IEnumerable<DiodeSetting> settings = diodes.Select(d => (DiodeSetting)diodeSetting.GetValue(d)).Distinct();
-                settings.Do(setting => settingNeutralColor.SetValue(setting, Configs.CurrentColor));
+                settings.Do(setting => settingNeutralColor.SetValue(setting, CurrentColor));
                 diodes.Do(d => { d.SetPoweredColorNegative(); d.SetPoweredColorNeutral(); });
             }
             catch(NullReferenceException)
             {
                 //If ship doesn't exist yet
+            }
+            catch(Exception ex)
+            {
+                //Other unexpected Exceptions (Striker health was starting at 0)
+                Debug.LogError("Caught exception while updating engine trim colors\n" + ex);
             }
         }
 
